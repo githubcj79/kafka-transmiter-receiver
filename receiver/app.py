@@ -27,18 +27,18 @@ def receiver(topic=None):
     for message in CONSUMER:
         message = message.value
         if message['beginning']:
-            # Assumes the default UTF-8 for str.
-            str = ""
+            # Assumes the default UTF-8 for str_.
+            str_ = ""
         elif message['data']:
-            str = str.join(message['chunk'])
+            str_ = str_.join(message['chunk'])
         elif message['ending']:
-            hash_object = hashlib.md5(str.encode())
-            return message['hash'] == hash_object.hexdigest(), str
+            hash_object = hashlib.md5(str_.encode())
+            return message['hash'] == hash_object.hexdigest(), str_
 
 
 if __name__ == '__main__':
     while True:
-        ok, str = receiver(topic=TRANSACTIONS_TOPIC)
+        ok, str_ = receiver(topic=TRANSACTIONS_TOPIC)
         print(f"ok[{ok}]")
-        print(f"str[{str}]")
+        print(f"str_[{str_}]")
         print('_' * 32)
