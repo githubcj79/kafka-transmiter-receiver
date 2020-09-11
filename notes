@@ -2,3 +2,26 @@
 https://florimond.dev/blog/articles/2018/09/building-a-streaming-fraud-detection-system-with-kafka-and-python/
 
 https://pythonexamples.org/python-split-string-into-specific-length-chunks/
+---------------------------------------------------------------------------
+Estoy en: ~/Document/work/message-transmiter
+
+La idea: 
+	- recibir un mensaje grande > 2 MB
+	- transmitirlo en trozos
+	- verificar q se recibió bien (hash)
+
+Comandos útiles
+$ tree -a -I ".git"
+
+~/Document/work/message-transmiter/kafka-docker:
+$ docker-compose up -d
+./create-topic.sh
+$ docker-compose ps
+$ docker-compose stop
+$ docker rm $(docker ps -a -q -f status=exited)
+$ docker ps -a
+
+$ docker-compose -f docker-compose.kafka.yml logs broker
+
+~/Document/work/message-transmiter/transmiter$ python app.py
+~/Document/work/message-transmiter/receiver$ python app.py
